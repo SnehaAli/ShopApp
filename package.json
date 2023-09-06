@@ -7,12 +7,12 @@
     "pug": "^3.0.2"
   },
   "scripts": {
-    "start": "nodemon parsing.js"
+    "start": "nodemon index.js"
   },
   "name": "nodejscodes",
   "version": "1.0.0",
   "description": "Node JS series",
-  "main": "parsing.js",
+  "main": "index.js",
   "author": "",
   "license": "ISC",
   "devDependencies": {
