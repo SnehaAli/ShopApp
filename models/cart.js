@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { compile } = require('pug');
 
 const p = path.join(
     path.dirname(require.main.filename),
@@ -37,9 +38,26 @@ module.exports = class Cart {
             fs.writeFile(p, JSON.stringify(cart), err => {
                 console.log(err);
             });
-        });
-        
-        
+        });      
     }
 
+    static deleteProduct(id, productPrice) {
+        fs.readFile(p, (err,fileContent) => {
+            const updatedCart = {...cart};
+            //fetching the id of delete item
+            const product = updatedCart.product.find(prod => prod.id === id);
+            
+            //putting all item except the deleted one
+            updatedCart.product = updatedCart.product.filter(
+                prod => prod.id !== id
+                );
+            //fetching the quantity 
+            const quantity = product.qty;
+            updatedCart.totalPrice = updatedCart.totalPrice - productPrice * quantity; 
+
+            fs.writeFile(p, JSON.stringify(updatedCart), err => {
+                console.log(err);
+            });
+        });
+    }
 }
