@@ -43,15 +43,18 @@ module.exports = class Cart {
 
     static deleteProduct(id, productPrice) {
         fs.readFile(p, (err,fileContent) => {
-            const updatedCart = {...cart};
+            if(err) {
+                return;
+            }
+            const updatedCart = {...fileContent};
             //fetching the id of delete item
-            const product = updatedCart.product.find(prod => prod.id === id);
-            
+            const product = updatedCart.products.find(prod => prod.id === id);
+
             //putting all item except the deleted one
-            updatedCart.product = updatedCart.product.filter(
+            updatedCart.products = updatedCart.products.filter(
                 prod => prod.id !== id
                 );
-            //fetching the quantity 
+            //fetching the quantity                                  
             const quantity = product.qty;
             updatedCart.totalPrice = updatedCart.totalPrice - productPrice * quantity; 
 
