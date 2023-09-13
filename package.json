@@ -5,7 +5,8 @@
     "express-handlebars": "3.0",
     "mysql2": "^3.6.1",
     "nodeman": "^1.1.2",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sequelize": "^6.33.0"
   },
   "scripts": {
     "start": "nodemon index.js"
