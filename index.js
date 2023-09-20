@@ -20,9 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('65092f1b3a18d4318f37ec9a')
+  User.findById('650abb6d0ecb19593c55e343')
     .then(user => {
-      req.user = new User(user.username,  user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -36,6 +36,18 @@ app.use(errorController.get404);
 mongooose
 .connect('mongodb+srv://nehaakhatoon72:gGPKUGwHP1Y1nBO2@cluster0.5il7znj.mongodb.net/shop?retryWrites=true&w=majority&appName=AtlasApp')
 .then(result => {
+  User.findOne().then(user => {
+    if(!user) {
+      const user = new User({
+        name: 'Rob',
+        email: 'rob124@gmail.com',
+        cart: {
+          item: []
+        }
+      });
+      user.save();
+    }
+  });
   app.listen(3000)
 })
 .catch(err => {
