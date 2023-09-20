@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
+const mongooose = require('mongoose');
 const User = require('./models/user');
  
 
@@ -33,8 +33,13 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongooose
+.connect('mongodb+srv://nehaakhatoon72:gGPKUGwHP1Y1nBO2@cluster0.5il7znj.mongodb.net/shop?retryWrites=true&w=majority&appName=AtlasApp')
+.then(result => {
+  app.listen(3000)
+})
+.catch(err => {
+  console.log(err);
+})
 
 

@@ -4,6 +4,7 @@
     "ejs": "^3.1.9",
     "express-handlebars": "3.0",
     "mongodb": "^6.1.0",
+    "mongoose": "^7.5.2",
     "mysql2": "^3.6.1",
     "nodeman": "^1.1.2",
     "pug": "^3.0.2",
