@@ -1,7 +1,17 @@
 exports.getLogin = (req, res, next) => {
-        res.render('auth/login', {
-          path: '/login',
-          pageTitle: 'Login'
-        });
-  };
-  
+  const isLoggedIn = req
+    .get('Cookie')
+    // .split(';')[1]
+    // .trim()
+    // .split('=')[1];
+  res.render('auth/login', {
+    path: '/login',
+    pageTitle: 'Login',
+    isAuthenticated : isLoggedIn
+  });
+};
+
+  exports.postLogin = (req, res, next) => {
+    res.setHeader('Set-Cookie', 'isLoggedIn=true');
+   res.redirect('/');
+};
