@@ -1,16 +1,1 @@
-[
-    {
-        "id": "0.6282670623768036",
-        "title": "feather",
-        "imageUrl": "https://i.pinimg.com/736x/3f/dd/23/3fdd23b3a3a22b9c8286f0091ea6251c--quill-running.jpg",
-        "description": "Colorful Feathers !SC",
-        "price": "20.0"
-    },
-    {
-        "title": "book2",
-        "imageUrl": "https://tse2.mm.bing.net/th?id=OIP.KbEyrvoRTqpdJO-IYtL5fQHaEB&pid=Api&P=0&h=180",
-        "description": "good book ",
-        "price": "20",
-        "id": "0.5526771210608032"
-    }
-]
+[{"id":"123245","title":"A Book","imageUrl":"https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg","description":"This is an awesome book!","price":"19"},{"id":"0.41607315815753076","title":"fasfd","imageUrl":"fdasfs","description":"fadsfads","price":"12"}]
