@@ -11,6 +11,7 @@ const User = require('./models/user');
 const MONGODB_URI = 'mongodb+srv://nehaakhatoon72:gGPKUGwHP1Y1nBO2@cluster0.5il7znj.mongodb.net/shop';
 const csrf = require('csurf');
 
+
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -18,6 +19,7 @@ const store = new MongoDBStore({
 });
 
 const csrfProtection = csrf();
+const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -38,6 +40,7 @@ app.use(
     })
   );
    app.use(csrfProtection);
+   app.use(flash());
 
   app.use((req, res, next) => {
     if(!req.session.user) {
