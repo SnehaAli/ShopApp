@@ -9,12 +9,15 @@ const errorController = require('./controllers/error');
 const mongooose = require('mongoose');
 const User = require('./models/user');
 const MONGODB_URI = 'mongodb+srv://nehaakhatoon72:gGPKUGwHP1Y1nBO2@cluster0.5il7znj.mongodb.net/shop';
+const csrf = require('csurf');
 
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
 });
+
+const csrfProtection = csrf();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -34,6 +37,7 @@ app.use(
       store: store
     })
   );
+   app.use(csrfProtection);
 
   app.use((req, res, next) => {
     if(!req.session.user) {
@@ -47,14 +51,11 @@ app.use(
     .catch(err => console.log(err));
   });
 
-// app.use((req, res, next) => {
-//   User.findById('650bdf967ffd265904b492e4')
-//     .then(user => {
-//       req.user = user;
-//       next();
-//     })
-//     .catch(err => console.log(err));
-// }); 
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
