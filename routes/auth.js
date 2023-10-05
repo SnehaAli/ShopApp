@@ -39,26 +39,26 @@ router.post('/signup', [
             return Promise.reject('Email already exist!');
             }
         });
-})
-.normalizeEmail(),
-body(
-    'password',
-    'Password should be numbers and text and atleast 5 characters.'
-)
-.isLength({min: 5})
-.isAlphanumeric()
-.trim(),
-body('confirmPassword')
-.trim()
-.custom((value, {req}) => {
-    if(value !== req.body.password) {
-        throw new Error('Password not matched');
-    }
-    return true;
-})
-],
-authController.postSignup
-);
+    })
+    .normalizeEmail(),
+    body(
+        'password',
+        'Password should be numbers and text and atleast 5 characters.'
+    )
+    .isLength({min: 5})
+    .isAlphanumeric()
+    .trim(),
+    body('confirmPassword')
+    .trim()
+    .custom((value, {req}) => {
+        if(value !== req.body.password) {
+            throw new Error('Password not matched');
+        }
+        return true;
+    })
+    ],
+    authController.postSignup
+    );
 
 router.post('/logout', authController.postLogout);
 
